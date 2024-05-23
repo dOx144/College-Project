@@ -49,9 +49,12 @@ const ItemDetail = ({el,handleViewing}) => {
             <div className="w-full min-h-full p-2 flex justify-between *:rounded-xl gap-4">
                 <div className="bg-[#F5FBEF] w-1/2 flex items-end flex-col p-4">
                   <h2 className="text-2xl">Items</h2>
-                  <ul>
+                  <ul className="w-full">
                     {el.innerItems.map((el,i)=>(
-                      <li key={i} className="opacity-60">{el.item}</li>
+                      <li key={i} className="opacity-60 flex w-full justify-between">
+                        <p>{i} &#41;</p>
+                        <p>{el.item}</p>
+                      </li>
                     ))}
                   </ul>
                 </div>

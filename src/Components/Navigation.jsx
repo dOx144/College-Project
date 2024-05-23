@@ -4,10 +4,6 @@ const Navigation = () => {
 
   const lists = [
     {
-      name:'Notes',
-      link:'/home'
-    } ,
-    {
       name:'Credits',
       link:'/credits'
     },
