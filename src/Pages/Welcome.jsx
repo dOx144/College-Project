@@ -10,7 +10,7 @@ const Welcome = () => {
             <div className="hero space-y-4">
               <h1 className='text-[60px] leading-[3rem] md:leading-[4rem]'>Welcome to <br /> Expense tracker</h1>
 
-              <p >Take Kontol of your finances with our easy-to-use expense tracking solution. </p>
+              <p >Take control of your finances with our easy-to-use expense tracking solution. </p>
             </div>
 
             <div className="cta flex flex-col items-center md:items-start gap-4">
