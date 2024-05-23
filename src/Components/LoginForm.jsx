@@ -5,6 +5,7 @@ import { toast } from 'react-toastify'
 
 
 const LoginFrom = () => {
+  const userAPI = import.meta.env.VITE_USER_API_URL
 
   const [username,setUsername] = useState('')
   const [password, setPassword] = useState('')
@@ -20,7 +21,7 @@ const LoginFrom = () => {
     e.preventDefault()
 
     if(isValid()){
-      fetch('http://localhost:5000/users/'+ username)
+      fetch(userAPI+ username)
       .then(res =>{
         if(!res.ok){
            alert('Please enter valid Email')

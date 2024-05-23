@@ -4,6 +4,10 @@ import { useNavigate } from "react-router-dom";
 
 const MakeItem = ({handleCreate,username, userData}) => {
   
+
+
+  const userdataAPI = import.meta.env.VITE_USERDATA_API_URL
+
   const id = username
 
   const [title, setTitle] = useState('')
@@ -109,7 +113,7 @@ const MakeItem = ({handleCreate,username, userData}) => {
     // console.log(userData)
     // console.log(sendData)
 
-    fetch('http://localhost:5000/userdata/' + id,{
+    fetch(userdataAPI + id,{
       method:"PUT",
       headers:{"Content-Type":"application/json"},
       body:JSON.stringify(myDat)

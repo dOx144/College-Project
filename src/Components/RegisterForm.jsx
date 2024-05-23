@@ -3,6 +3,8 @@ import { Button3 } from "./Button";
 import { useState } from 'react'
 
 const RegisterForm = () => {
+  const userAPI = import.meta.env.VITE_USER_API_URL
+  const userdataAPI = import.meta.env.VITE_USERDATA_API_URL
 
 
   const [fName, setFName] = useState('')
@@ -31,7 +33,7 @@ const RegisterForm = () => {
     if(pass === confirmPass){
 
       // fetches user info
-      fetch('http://localhost:5000/users/',{
+      fetch(userAPI,{
          method:'POST',
          headers:{
            'Content-Type':'application/json'
@@ -42,7 +44,7 @@ const RegisterForm = () => {
        .catch(error => console.error('Error posting data:', error))
 
       //  fetches user data
-      fetch('http://localhost:5000/userdata/',{
+      fetch(userdataAPI,{
         method:"POST",
         headers:{
           'Content-Type':'application/json',

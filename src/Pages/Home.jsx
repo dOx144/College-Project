@@ -8,6 +8,7 @@ import Card from "../Components/Card";
 
 
 const Home = () => {
+  const userDATA = import.meta.env.VITE_USERDATA_API_URL
 
   const [userData, setUserData] = useState([])
   const [err,setErr] = useState('')
@@ -30,7 +31,7 @@ const Home = () => {
     const fetchUserData = async () => {
       setIsLoading(true)
       try{
-        const res = await fetch("http://localhost:5000/userdata/" + username)
+        const res = await fetch(userDATA + username)
 
         if(!res.ok){
           throw new Error(res.statusText)

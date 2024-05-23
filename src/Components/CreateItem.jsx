@@ -1,6 +1,10 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const CreateItem = ({handleCreate,username}) => {
+
+  const userdataAPI = import.meta.env.VITE_USERDATA_API_URL
+
+
   const [title, setTitle] = useState('')
 
   const [items, setItems] = useState([]); // State for items
@@ -96,7 +100,7 @@ const CreateItem = ({handleCreate,username}) => {
     const handleUpdate = async () => {
       try {
         // const updatedUserData = { id: userData.id, title, data, note };
-        const response = await fetch('http://localhost:5000/userdata' + username, {
+        const response = await fetch(userdataAPI + username, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',
