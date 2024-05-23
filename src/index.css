@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Gluten:wght@100..900&family=Hachi+Maru+Pop&family=Inter:wght@100..900&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.gluten {
+  font-family: "Gluten", cursive;
+}
+
+.hachi {
+  font-family: "Hachi Maru Pop", cursive;
+}
+
+.inter {
+  font-family: "Inter", sans-serif;
+}
+
+p {
+  opacity: 60%;
+}
+
+input:focus {
+  outline: none;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button,
+textarea,
+.noScroll {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"],
+.noScroll {
+  -moz-appearance: textfield;
+  /* Firefox
+   */
+}
+
+button {
+  &:active {
+    scale: .98;
+  }
+}
+
+/* Customize the scrollbar */
+
+ul::-webkit-scrollbar {
+  width: 12px;
+}
+
+ul::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 12px;
+}
+
+ul::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
