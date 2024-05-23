@@ -30,9 +30,9 @@ const ItemDetail = ({el,handleViewing}) => {
               <h1 className="text-[#FF5252] text-3xl">{el.title}</h1>
               {handleSave()
               ? 
-              <p className="flex text-sm gap-2">Saving <p className=" text-xl font-bold animate-bounce text-green-800 opacity-100"> ${el.saved}</p> looking good 😁<p className=" animate-bounce opacity-100">👌.</p> </p>  
+              <p className="flex text-sm gap-2">Saving <p className=" text-xl font-bold animate-bounce text-green-800 opacity-100"> {el.saved}$</p> looking good 😁<p className=" animate-bounce opacity-100">👌.</p> </p>  
               :
-              <p className="text-sm flex gap-2">Running low on <p className=" text-xl font-bold animate-bounce text-green-800 opacity-100"> ${el.saved}</p> not looking good 😭<p className=" animate-pulse opacity-100">💸.</p></p>  
+              <p className="text-sm flex gap-2">Running low on <p className=" text-xl font-bold animate-bounce text-green-800 opacity-100"> {el.saved}$</p> not looking good 😭<p className=" animate-pulse opacity-100">💸.</p></p>  
               }
             </div>
 
@@ -60,7 +60,7 @@ const ItemDetail = ({el,handleViewing}) => {
                   <h2 className="text-2xl">Expense</h2>
                   <ul>
                     {el.innerItems.map((el,i)=>(
-                      <li key={i} className="opacity-60">{el.price}</li>
+                      <li key={i} className="opacity-60">-{el.price}$</li>
                     ))}
                   </ul>
                 </div>

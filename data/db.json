@@ -1,9 +1,41 @@
 {
   "users": [
-
+    {
+      "id": "Jakedox",
+      "fName": "jake",
+      "lName": "dox",
+      "email": "jakedox@123.com",
+      "confirmPass": "hellojake",
+      "agreed": true
+    }
   ],
   "userdata": [
-
+    {
+      "id": "Jakedox",
+      "innerdata": [
+        {
+          "title": "asdasdas",
+          "note": "asdasdasd",
+          "innerItems": [
+            {
+              "item": "asdasdasds",
+              "price": 23
+            },
+            {
+              "item": "asdasdas",
+              "price": 23
+            },
+            {
+              "item": "dasdasdas",
+              "price": 23
+            }
+          ],
+          "total": "23",
+          "expense": 69,
+          "saved": -46
+        }
+      ]
+    }
   ],
   "mockup": [
     {
