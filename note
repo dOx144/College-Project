@@ -1,5 +1,6 @@
 npm i json-server
 json-server --watch data/db.json
+https://www.figma.com/design/pXv2EaRUw78WxGxalo21JN/Expense-Tracker?node-id=0-1&t=FlYj7fnkrnpwx0yN-0
 
 npm i 
 npm run dev
