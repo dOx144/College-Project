@@ -3,3 +3,27 @@ json-server --watch data/db.json
 
 npm i 
 npm run dev
+
+users{
+	user_id VARCHAR(255) PRIMARY KEY,
+	first_name VARCHAR(255),
+	last_name VARCHAR(255),
+	user_email VARCHAR(255),
+	confirmpass VARCHAR(255),
+	user_agree BOOLEAN
+}
+
+userdata{
+	user_id VARCHAR(255) REFERENCES users(user_id) ON DELETE CASCADE,
+	user_title VARCHAR(255) PRIMARY KEY, 
+	user_note VARCHAR(255),
+	user_total INT,
+	user_expense INT,
+	user_saved INT
+}
+
+dataitems{
+	user_title VARCHAR(255) REFERENCES userdata (user_title) ON DELETE CASCADE,
+	item_name VARCHAR(255),
+	item_price INT
+}

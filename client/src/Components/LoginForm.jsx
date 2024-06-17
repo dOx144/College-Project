@@ -29,30 +29,23 @@ const LoginFrom = () => {
         return res.json()
       })
       .then(data => {
-       if(data.confirmPass === password){
-        console.log(data)
+
+        if(data.length === 0){
+          alert("Invalid Username")
+        }
+
+       if(data[0]["confirmpass"] == password){
+        // console.log(data)
+        console.log('LogIn Success!')
         sessionStorage.setItem('username',username)
         navigate('/home')
        }
        else{
+        console.log(password)
         alert('Password do not match ')
         setPassword('')
         return
        }
-        // if(Object.keys(data).length === 0)
-        //   {
-        //     toast.error('Please Enter Valid User Name')
-        //   }else{
-        //       if(data.password === password){   
-        //         toast.success("Success")
-              
-        //       }else{
-        //         toast.error('Please Enter Valid User Name')
-
-        //       }
-
-        //   }
-
       })
       .catch(err=>console.error(err))
     }

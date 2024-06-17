@@ -9,8 +9,11 @@ import Card from "../Components/Card";
 
 const Home = () => {
   const userDATA = import.meta.env.VITE_USERDATA_API_URL
+  const dataitemsAPI = import.meta.env.VITE_DATAITEMS_API_URL
 
   const [userData, setUserData] = useState([])
+  const [dataitems,setDataItems] = useState([])
+
   const [err,setErr] = useState('')
   const [isLoading, setIsLoading] = useState(false)
 
@@ -38,7 +41,8 @@ const Home = () => {
         }
 
         const data = await res.json()
-        setUserData(data.innerdata)
+        // console.log(data)
+        setUserData(data)
         // console.log(data.innerdata)
       }catch(err){
         setErr(err)
@@ -47,8 +51,25 @@ const Home = () => {
       }
     }
 
-    fetchUserData()
+    const fetchDataItems = async ()=>{
+      try{
+        const res = await fetch(dataitemsAPI)
 
+        if(!res.ok){
+          throw new Error(res.statusText)
+        }
+
+        const data = await res.json()
+
+        // console.log(data)
+        setDataItems(data)
+      }catch(err){
+        console.log(err)
+      }
+    };
+    
+    fetchUserData()
+    fetchDataItems()
    
   },[])
 
@@ -57,36 +78,23 @@ const Home = () => {
     setIsCreating(!creating)
   }
 
-  const handleDelete = (i) => {
-    const newUserData = [...userData]
-    newUserData.splice(i,1)
-    setUserData(newUserData)
-
-    const myDat ={
-      id:username,
-      innerdata:newUserData,
-    }
-
-    fetch('http://localhost:5000/userdata/' + username,{
-      method:"PUT",
-      headers:{"Content-Type":"application/json"},
-      body:JSON.stringify(myDat)
-      }).then(res=>{
-        if(!res.ok){
-          throw new Error(res.statusText)
-        }
-        else{
-          res.json()
-        } 
-      }).then(data=>{
-        console.log(data)
-        console.log(myDat)
-        })
-      .catch(err=>console.log(err))
-
-    }
-
-
+  const handleDelete = async (el) => {
+    // console.log(el.user_title)
+    try {
+      const response = await fetch(userDATA + el.user_title, {
+        method: "DELETE"
+      });
+      
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      console.log("Item DELETED");
+      window.location.reload()// Reload the window after deletion
+  } catch (err) {
+    console.error("An error occurred while deleting the item:", err.message);
+  }
+  };
+      
   return ( 
 
     <div className="flex relative gluten flex-col md:flex-row transition-all">
@@ -111,7 +119,7 @@ const Home = () => {
         {/* shows if data is available  */}
         
           {userData.map((el,i)=>(
-            <Card key={i} handleDelete={handleDelete} el={el}/>
+            <Card key={i} dataitems={dataitems} handleDelete={()=>{handleDelete(el)}} el={el}/>
           ))}
 
      </main>

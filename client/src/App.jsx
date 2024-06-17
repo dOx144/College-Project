@@ -4,8 +4,8 @@ import Login from "./Pages/Login"
 import Register from "./Pages/Register"
 import Home from "./Pages/Home"
 import Credits from "./Pages/Credits"
-import Mockup from "./Components/Mockup"
-import Prac from "./Components/prac"
+// import Mockup from "./Components/Mockup"
+// import Prac from "./Components/prac"
 import NoPage from "./Pages/NoPage"
 
 function App() {

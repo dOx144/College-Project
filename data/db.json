@@ -7,6 +7,14 @@
       "email": "jakedox@123.com",
       "confirmPass": "hellojake",
       "agreed": true
+    },
+    {
+      "id": "jakedox",
+      "fName": "jake",
+      "lName": "dox",
+      "email": "jakedox@123.com",
+      "confirmPass": "hellojake",
+      "agreed": true
     }
   ],
   "userdata": [
@@ -33,6 +41,28 @@
           "total": "23",
           "expense": 69,
           "saved": -46
+        }
+      ]
+    },
+    {
+      "id": "jakedox",
+      "innerdata": [
+        {
+          "title": "College Expense",
+          "note": "Daily morning expense",
+          "innerItems": [
+            {
+              "item": "bus",
+              "price": 15
+            },
+            {
+              "item": "food",
+              "price": 25
+            }
+          ],
+          "total": "100",
+          "expense": 40,
+          "saved": 60
         }
       ]
     }

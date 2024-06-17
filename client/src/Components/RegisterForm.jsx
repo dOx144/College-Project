@@ -28,7 +28,12 @@ const RegisterForm = () => {
   const handleRegister = (e) => {
     e.preventDefault()
 
-    const newUser = {id, fName, lName, email, confirmPass, agreed}
+    const newUser = {user_id:id,
+                      first_name:fName, 
+                      last_name:lName, 
+                      user_email:email, 
+                      confirmPass, 
+                      user_agree:agreed}
 
     if(pass === confirmPass){
 
@@ -39,27 +44,35 @@ const RegisterForm = () => {
            'Content-Type':'application/json'
          },
          body: JSON.stringify(newUser)
-       }).then(res => res.json())
+       }).then(res =>{
+              if(res.ok){
+                console.log("Registered Successfully")
+              }
+              console.log(res.status)
+              if(!res.ok){
+                console.log("couldnt Fetch the data")
+              }
+                res.json()
+       })
        .then(data => console.log(data))
-       .catch(error => console.error('Error posting data:', error))
+       .catch(error => console.error('Error posting data:', error.message))
 
       //  fetches user data
-      fetch(userdataAPI,{
-        method:"POST",
-        headers:{
-          'Content-Type':'application/json',
-        },
-        body: JSON.stringify(userData)
-      })
-      .then(res=>{
-        if(!res.ok){
-          throw new Error(`Couldn't Post the data in database`)
-        }
-        res.json()
-      })
-      .then(data => console.log(data))
-      .catch(err=>console.log(err))
-
+      // fetch(userdataAPI,{
+      //   method:"POST",
+      //   headers:{
+      //     'Content-Type':'application/json',
+      //   },
+      //   body: JSON.stringify(userData)
+      // })
+      // .then(res=>{
+      //   if(!res.ok){
+      //     throw new Error(`Couldn't Post the data in database`)
+      //   }
+      //   res.json()
+      // })
+      // .then(data => console.log(data))
+      // .catch(err=>console.log(err.message))
 
       setLName('')
       setFName('')

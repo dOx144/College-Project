@@ -7,6 +7,7 @@ const MakeItem = ({handleCreate,username, userData}) => {
 
 
   const userdataAPI = import.meta.env.VITE_USERDATA_API_URL
+  const dataitemsAPI = import.meta.env.VITE_DATAITEMS_API_URL
 
   const id = username
 
@@ -90,46 +91,71 @@ const MakeItem = ({handleCreate,username, userData}) => {
       return
     }
 
+    // dataitems
+    // userdata
+    // users
+    
+    const sendData = {
+      user_id:username,
+      user_title:title,
+      user_note:note,
+      user_total:parseInt(total),
+      user_expense:expense,
+      user_saved:saved
+    }
+    console.log(sendData)
+
+    fetch(userdataAPI,{
+      method:'POST',
+      headers:{
+        'Content-Type': 'application/json'
+        },
+      body:JSON.stringify(sendData)
+    }).then(_=>console.log("ADDED!"))
+    .catch((err)=>console.log(err.message))
+ 
+
     const newData = prices.map((el, i) => ({
-      item: items[i],
-      price: el
+      user_title:title,
+      item_name: items[i],
+      item_price: el
     }));
+    // console.log(newData)
 
-
-    const data = {
-      title,
-      note,
-      innerItems:newData,
-      total,
-      expense,
-      saved
-    }
-
-    const myDat ={
-      id,
-      innerdata:[...userData,data],
-    }
-    console.log(myDat)
-    // console.log(userData)
-    // console.log(sendData)
-
-    fetch(userdataAPI + id,{
-      method:"PUT",
-      headers:{"Content-Type":"application/json"},
-      body:JSON.stringify(myDat)
-      }).then(res=>{
-        if(!res.ok){
-          throw new Error(res.statusText)
+    // newData.map(el=>{
+    //   fetch(dataitemsAPI,{
+    //     method:'POST',
+    //     headers:{
+    //       'Content-Type': 'application/json'
+    //     },
+    //     body:JSON.stringify(el)
+    //   }).then(res=>{
+    //     console.log("added!")
+    //   }).catch((err)=>console.log(err.message))
+    // })
+    async function postData(data) {
+      try {
+        const response = await fetch(dataitemsAPI, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(data)
+        });
+        
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
         }
-        else{
-          res.json()
-        } 
-      }).then(data=>{
-        console.log(data)
-        handleCreate()
-        window.location.reload();
-        })
-      .catch(err=>console.log(err))
+        
+        console.log("added!");
+      } catch (err) {
+        console.log(err.message);
+      }
+    }
+    
+    newData.forEach(el => postData(el));
+    handleCreate();
+    window.location.reload();
   }
 
   return ( 
@@ -143,7 +169,7 @@ const MakeItem = ({handleCreate,username, userData}) => {
         </div>
 
         {/* card */}
-        <div className="form-container flex flex-col item-start justify-between bg-[#D9D9D9] space-y-3  rounded-xl p-[25px] w-[450px] min-h-[520px]">
+        <div className="form-container w-full min-h-full p-8 rounded-none flex flex-col item-start justify-between bg-[#D9D9D9] md:rounded-xl md:p-[25px] md:w-[450px] md:min-h-[520px]">
 
 
 {/* title section */}
@@ -162,7 +188,7 @@ const MakeItem = ({handleCreate,username, userData}) => {
           </div>
 
   {/* status section */}
-          <div className="flex *:w-1/3 gap-2 items-end ">
+          <div className="flex flex-col w-full items-start sm:flex-row *:w-1/3 gap-2 sm:items-end ">
 
             <div className="">
               <h2 className="opacity-60">Total Balance</h2>
