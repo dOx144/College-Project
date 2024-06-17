@@ -1,8 +1,10 @@
 npm i json-server
 json-server --watch data/db.json
+https://www.figma.com/design/pXv2EaRUw78WxGxalo21JN/Expense-Tracker?node-id=0-1&t=FlYj7fnkrnpwx0yN-0
 
 npm i 
 npm run dev
+<<<<<<< HEAD
 
 users{
 	user_id VARCHAR(255) PRIMARY KEY,
@@ -27,3 +29,5 @@ dataitems{
 	item_name VARCHAR(255),
 	item_price INT
 }
+=======
+>>>>>>> e1ebabe9f2390948fc7f5eec83f89fc4bd92effb
