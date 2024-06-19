@@ -14,7 +14,7 @@ const Navigation = () => {
   ]
 
   return ( 
-      <header className="bg-[#170f11] gluten p-4 justify-between md:justify-center flex md:flex-col min-w-[360px] md:px-0 md:h-screen md: md:gap-32 ">
+      <header className="bg-[#170f11] gluten p-4 justify-between md:justify-center flex md:flex-col min-w-[360px] md:px-0 md:min-h-screen md: md:gap-32 ">
         <h2 className = " text-white text-xl md:text-3xl px-[16px] hachi cursor-default">Expense Tracker</h2>
         <ul className="flex items-center gap-4 md:flex-col md:items-start">
         {lists.map((el,i) =>

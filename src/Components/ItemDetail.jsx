@@ -1,4 +1,4 @@
-import { useRouteLoaderData } from "react-router-dom";
+import { useState } from "react"
 
 const ItemDetail = ({el,handleViewing,dataitems,handleDelete}) => {
 
@@ -6,6 +6,11 @@ const ItemDetail = ({el,handleViewing,dataitems,handleDelete}) => {
   // const [isSaving, setIsSaving] = useState(false)
 
   // const [cardItems,setCardItems] = useState([])
+  const [isEditing, setIsEditing] = useState(false)
+  const [eidtedTitle,setEditedTitle] =useState(el.user_title)
+
+  const userdataAPI = import.meta.env.VITE_USERDATA_API_URL
+
 
   // const cardItems = dataitems.find(dataitems=>dataitems.user_title === el.user_title)
   // console.log(cardItems)
@@ -17,6 +22,18 @@ const ItemDetail = ({el,handleViewing,dataitems,handleDelete}) => {
     return el.user_saved >= 0;
   }
   // console.log(handleSave())
+
+  const handleEdit = () => {
+    setIsEditing(!isEditing)
+ }
+
+ const handleChange = () => {
+  console.log(eidtedTitle)
+
+  
+
+  handleEdit()
+ }
 
   return ( 
     // <div className="absolute bg-[#D9D9D9] min-w-screen top-0 left-0 w-full min-h-screen h-full">
@@ -35,18 +52,27 @@ const ItemDetail = ({el,handleViewing,dataitems,handleDelete}) => {
           <div className="flex gap-4 items-center">
             <div className="dot size-[25px] bg-[#FF5252] rounded-full "></div>
             <div>
-              <h1 className="text-[#FF5252] text-3xl">{el.user_title}</h1>
-              {handleSave()
-              ? 
-              <p className="flex text-sm gap-2">Saving <p className=" text-xl font-bold animate-bounce text-green-800 opacity-100"> {el.user_saved}$</p> looking good 😁<p className=" animate-bounce opacity-100">👌.</p> </p>  
+            <input 
+            value ={eidtedTitle}
+            onChange={(e)=>{
+              setEditedTitle(e.target.value)
+            }}
+            className={`text-[#FF5252] bg-transparent text-3xl ${isEditing && "ring-2 rounded-xl p-1 focus:outline-none"} ${isEditing && 'bg-slate-50'}`}
+            readOnly={!isEditing}
+            suppressContentEditableWarning={true}/>
+              {/* {el.user_title}</h1> */}
+            {handleSave() ? <p className="flex text-sm gap-2">Saving <span className=" text-xl font-bold animate-bounce text-green-800 opacity-100"> {el.user_saved}$</span> looking good 😁<span className=" animate-bounce opacity-100">👌.</span> </p>  
               :
-              <p className="text-sm flex gap-2">Running low on <p className=" text-xl font-bold animate-bounce text-green-800 opacity-100"> {el.user_saved}$</p> not looking good 😭<p className=" animate-bounce  opacity-100">💸.</p></p>  
+              <p className="text-sm flex gap-2">Running low on <span className=" text-xl font-bold animate-bounce text-green-800 opacity-100"> {el.user_saved}$</span> not looking good 😭<span className=" animate-bounce  opacity-100">💸.</span></p>  
               }
               <p className="font-bold">Total : $ {el.user_total}</p>
             </div>
-
           </div>
-          <button onClick={handleViewing} className="text-5xl hover:text-[#ff5252] transition">X</button>
+          <div className="*:cursor-pointer flex items-center gap-4">
+            <p onClick={()=>handleEdit()} className={`${isEditing ? 'hidden' : 'block'}`}>EDIT</p>
+            <p onClick={()=>{handleChange()}} className={`${isEditing ? 'block' : 'hidden'}`}>Save</p>
+            <button onClick={handleViewing} className="text-5xl hover:text-[#ff5252] transition">X</button>
+          </div>
         </div>
 
         {/* item status  */}
@@ -59,16 +85,10 @@ const ItemDetail = ({el,handleViewing,dataitems,handleDelete}) => {
                 <div className="bg-[#F5FBEF] w-1/2 flex items-end flex-col p-4">
                   <h2 className="text-2xl">Items</h2>
                   <ul className="w-full flex flex-col items-end">
-                    {/* {el.innerItems.map((el,i)=>(
-                      <li key={i} className="opacity-60 flex w-full justify-between">
-                        <p>{i} &#41;</p>
-                        <p>{el.item}</p>
-                      </li>
-                    ))} */}
+        
                     {
                       filteredUserData.map((item,i)=>(
                         <li key={i} className="opacity-60 hover:opacity-100 cursor-default justify-between">
-                          {/* <p>{i} &#41;</p> */}
                           <p>{item.item_name}</p>
                         </li>
                       ))
@@ -82,7 +102,7 @@ const ItemDetail = ({el,handleViewing,dataitems,handleDelete}) => {
                   {
                       filteredUserData.map((item,i)=>(
                         <li key={i} className="opacity-60 hover:opacity-100 cursor-default justify-between">
-                          <p>{item.item_price}</p>
+                          <p>${item.item_price}</p>
                         </li>
                       ))
                     }
@@ -91,7 +111,6 @@ const ItemDetail = ({el,handleViewing,dataitems,handleDelete}) => {
             </div>
           </div>
 
-        {/* remove item */}
         <button onClick={handleDelete} className="text-[#FF5252] px-4 py-2 bg-white rounded-xl">Delete</button>
 
       </div>

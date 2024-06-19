@@ -104,7 +104,7 @@ const Home = () => {
       {isLoading && <p>Loading...</p>}
       {userData.length !== 0 && 
         <div className="absolute top-32 md:top-4 right-8 flex items-center gap-4">
-          <p className="px-4 py-2 group bg-[#D6EFFF] rounded-xl active:opacity-100 active:before:contents-['available soon']">Sort by : date</p>
+          {/* <p className="px-4 py-2 group bg-[#D6EFFF] rounded-xl active:opacity-100 active:before:contents-['available soon']">Sort by : date</p> */}
           <button onClick={handleCreate} className=" px-4 py-2 bg-[#D6EFFF] rounded-xl">+Add more</button>
         </div>
         
